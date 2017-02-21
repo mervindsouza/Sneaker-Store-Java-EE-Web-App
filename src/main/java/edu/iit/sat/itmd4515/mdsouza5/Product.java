@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 /**
  *
@@ -50,8 +52,12 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    @Column(unique = true, nullable = false)
+    
+    @NotNull(message = "The Name Of Product Cannot be Null.")
+    @Column(unique = true)
     private String name;
+    
+    @Past(message = "Product Date cannot be in the future.")
     @Temporal(TemporalType.DATE)
     private Date dateAdded;
     @Transient
