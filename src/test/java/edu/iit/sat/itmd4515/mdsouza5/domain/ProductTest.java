@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.iit.sat.itmd4515.mdsouza5;
+package edu.iit.sat.itmd4515.mdsouza5.domain;
 
+import edu.iit.sat.itmd4515.mdsouza5.Driver;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +15,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.RollbackException;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -27,7 +27,7 @@ import org.junit.BeforeClass;
 
 /**
  *
- * @author Mervin
+ * @author Mervin FP
  */
 public class ProductTest {
 
