@@ -179,13 +179,4 @@ public class ProductTest {
        LOG.info(c2.getEmail());
        em.close();
     }
-    
-    @Test
-    public void validateRelationshipsRainyDay()
-    {
-        Orders o2 = new Orders(new GregorianCalendar(2015, 8, 11).getTime(), 1001, 100.50f);
-        Customer c1 = new Customer("Rainy John Smith", "rainjsmith@gmail.com");
-        tx.begin();
-        
-    }
  }

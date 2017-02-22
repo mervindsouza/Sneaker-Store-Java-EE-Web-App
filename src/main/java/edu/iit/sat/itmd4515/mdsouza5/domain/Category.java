@@ -5,6 +5,11 @@
  */
 package edu.iit.sat.itmd4515.mdsouza5.domain;
 
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -13,18 +18,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import javax.validation.Constraint;
+import javax.validation.ConstraintValidator;
 /**
  *
  * @author mervin
  */
 @Entity
 @Table(name = "Category")
+
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+  
     private String categoryName;
 
     @OneToMany(mappedBy = "category")
