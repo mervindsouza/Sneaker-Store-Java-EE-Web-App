@@ -8,7 +8,6 @@ package edu.iit.sat.itmd4515.mdsouza5;
 import edu.iit.sat.itmd4515.mdsouza5.domain.Orders;
 import edu.iit.sat.itmd4515.mdsouza5.domain.Product;
 import java.util.GregorianCalendar;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

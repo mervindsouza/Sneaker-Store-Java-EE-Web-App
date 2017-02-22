@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -18,20 +20,21 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 /**
  *
- * @author Mervin FP
+ * @author Mervin
  */
 @Entity
 @Table(name = "Product")
-@NamedQueries({
-    @NamedQuery(name = "Product.findAll", query = "select p from Product p ")
-    ,
-    @NamedQuery(name = "Product.findByName", query = "select p from Product p where p.name = :name")
-})
+//@NamedQueries({
+//    @NamedQuery(name = "Product.findAll", query = "select p from Product p ")
+//    ,
+//    @NamedQuery(name = "Product.findByName", query = "select p from Product p where p.name = :name")
+//})
 public class Product {
 
     public Product() {
@@ -53,18 +56,23 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     
-    @NotNull(message = "The Name Of Product Cannot be Null.")
-    @Column(unique = true)
+    @Column
+    @NotNull(message = "Name cannot be null.")
     private String name;
     
-    @Past(message = "Product Date cannot be in the future.")
+    @Past(message = "Date Should be in past.")
     @Temporal(TemporalType.DATE)
     private Date dateAdded;
+    
     @Transient
     private Integer count;
-    
+
     @OneToOne(mappedBy = "product")
     private Orders orders;
+
+    @ManyToOne
+    @JoinColumn(name = "Category_Id")
+    private Category category;
 
     /**
      * Get the value of orders
@@ -82,8 +90,8 @@ public class Product {
      */
     public void setOrders(Orders orders) {
         this.orders = orders;
+        
     }
-
 
     /**
      * Get the value of price
@@ -145,6 +153,24 @@ public class Product {
 
     public void setId(Long Id) {
         this.Id = Id;
+    }
+
+    /**
+     * Get the value of category
+     *
+     * @return the value of category
+     */
+    public Category getCategory() {
+        return category;
+    }
+
+    /**
+     * Set the value of category
+     *
+     * @param category new value of category
+     */
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override

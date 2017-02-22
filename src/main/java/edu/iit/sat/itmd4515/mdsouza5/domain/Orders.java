@@ -5,11 +5,14 @@
  */
 package edu.iit.sat.itmd4515.mdsouza5.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -17,21 +20,27 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author mervin FP
+ * @author mervin
  */
 @Entity
 @Table(name = "Orders")
 public class Orders {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    @Temporal(TemporalType.DATE)    
-    private Date dateOrdered;    
+    @Temporal(TemporalType.DATE)
+    private Date dateOrdered;
     private Integer confirmationNumber;
     private Float amount;
 
     @OneToOne
     private Product product;
+
+    @ManyToMany
+    private List<Customer> customers = new ArrayList<>();
+    
+    
 
     public Orders() {
     }
@@ -41,7 +50,7 @@ public class Orders {
         this.confirmationNumber = confirmationNumber;
         this.amount = amount;
     }
-       
+
     /**
      * Get the value of product
      *
@@ -58,9 +67,13 @@ public class Orders {
      */
     public void setProduct(Product product) {
         this.product = product;
+        //product.setOrders(this);
     }
-
     
+    public void addProduct(Product p){
+        this.product = p;
+        p.setOrders(this);
+    }
 
     /**
      * Get the value of confirmationNumber
@@ -80,7 +93,6 @@ public class Orders {
         this.confirmationNumber = confirmationNumber;
     }
 
-
     /**
      * Get the value of dateOrdered
      *
@@ -99,8 +111,6 @@ public class Orders {
         this.dateOrdered = dateOrdered;
     }
 
-    
-
     public Long getId() {
         return Id;
     }
@@ -108,8 +118,8 @@ public class Orders {
     public void setId(Long Id) {
         this.Id = Id;
     }
-    
-     /**
+
+    /**
      * Get the value of amount
      *
      * @return the value of amount
@@ -126,6 +136,23 @@ public class Orders {
     public void setAmount(Float amount) {
         this.amount = amount;
     }
-   
-    
+
+    /**
+     * Get the value of customers
+     *
+     * @return the value of customers
+     */
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    /**
+     * Set the value of customers
+     *
+     * @param customers new value of customers
+     */
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
 }
