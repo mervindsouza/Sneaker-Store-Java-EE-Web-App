@@ -13,16 +13,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -31,25 +29,26 @@ import javax.validation.constraints.Past;
 @Entity
 @Table(name = "Product")
 //@NamedQueries({
-//    @NamedQuery(name = "Product.findAll", query = "select p from Product p ")
+//    @NamedQuery(productName = "Product.findAll", query = "select p from Product p ")
 //    ,
-//    @NamedQuery(name = "Product.findByName", query = "select p from Product p where p.name = :name")
+//    @NamedQuery(productName = "Product.findByName", query = "select p from Product p where p.productName = :productName")
 //})
 public class Product {
 
     public Product() {
     }
 
-//    public Product(Long Id, String name, Date dateAdded, Integer count) {
+//    public Product(Long Id, String productName, Date dateAdded, Integer productCount) {
 //        this.Id = Id;
-//        this.name = name;
+//        this.productName = productName;
 //        this.dateAdded = dateAdded;
-//        this.count = count;
+//        this.productCount = productCount;
 //    }
-    public Product(String name, Date dateAdded, Integer count) {
+
+    public Product(String productName, Date dateAdded, Integer productCount) {
+        this.productName = productName;
         this.dateAdded = dateAdded;
-        this.name = name;
-        this.count = count;
+        this.productCount = productCount;
     }
 
     @Id
@@ -57,15 +56,16 @@ public class Product {
     private Long Id;
     
     @Column
-    @NotNull(message = "Name cannot be null.")
-    private String name;
+    @NotNull(message = "Product Name cannot be null.")
+    @Size(min = 5, max = 50, message = "Product Name Must be Greater Than 5 Characters")
+    private String productName;
     
     @Past(message = "Date Should be in past.")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateAdded;
     
     @Transient
-    private Integer count;
+    private Integer productCount;
 
     @OneToOne(mappedBy = "product")
     private Orders orders;
@@ -98,17 +98,17 @@ public class Product {
      *
      * @return the value of price
      */
-    public Integer getCount() {
-        return count;
+    public Integer getProductCount() {
+        return productCount;
     }
 
     /**
      * Set the value of price
      *
-     * @param count
+     * @param productCount
      */
-    public void setCount(Integer count) {
-        this.count = count;
+    public void setProductCount(Integer productCount) {
+        this.productCount = productCount;
     }
 
     /**
@@ -130,21 +130,21 @@ public class Product {
     }
 
     /**
-     * Get the value of name
+     * Get the value of productName
      *
-     * @return the value of name
+     * @return the value of productName
      */
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
     /**
-     * Set the value of name
+     * Set the value of productName
      *
-     * @param name new value of name
+     * @param productName new value of productName
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public Long getId() {
@@ -175,6 +175,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "Id=" + Id + ", name=" + name + ", dateAdded=" + dateAdded + ", count=" + count + '}';
+        return "Product{" + "Id=" + Id + ", name=" + productName + ", dateAdded=" + dateAdded + ", count=" + productCount + '}';
     }
 }

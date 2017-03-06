@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Start Page</title>
+        <title>Add New Product</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Enter Details To Add a New Product</h1>
+        
+        <form action="/mdsouza5-fp/ProductValidations" method="POST">
+            Product Name:<br>
+            <input type="text" id="productName" name="productName" /><br><br>
+            Date Added:<br>
+            <input type="text" id="dateAdded" name="dateAdded" /><br><br>
+            Product Count:<br>
+            <input type="text" id="productCount" name="productCount" /><br><br>
+            <!--Submit:<br>-->
+            <input type="submit" id="submit" name="submit" /><br><br>
+            <!--Reset:<br>-->
+            <input type="reset" id="reset" name="reset" />
+        </form>
     </body>
 </html>
