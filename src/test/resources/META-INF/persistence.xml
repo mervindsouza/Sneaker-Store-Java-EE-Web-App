@@ -9,7 +9,7 @@
     <class>edu.iit.sat.itmd4515.mdsouza5.domain.Customer</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/itmd4515?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/itmd4515?zeroDateTimeBehavior=convertToNull&amp;serverTimezone=America/Chicago"/>
       <property name="javax.persistence.jdbc.user" value="itmd4515"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="itmd4515"/>
