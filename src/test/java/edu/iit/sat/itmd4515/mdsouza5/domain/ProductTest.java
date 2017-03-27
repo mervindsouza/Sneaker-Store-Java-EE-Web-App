@@ -53,12 +53,18 @@ public class ProductTest {
         //Product seed = new Product("Mock MacBook Pro", new GregorianCalendar(2015, 5, 15).getTime(), 300);
         //Product p4 = new Product("Mock MacBook", new GregorianCalendar(2015, 5, 15).getTime(), 300);
         
+        //Administrator a1 = new Administrator("Harvey Specter", "harveyspecter@gmail.com");
+        //Administrator a2 = new Administrator("Mike Ross", "mikeross@gmail.com");
+                
         Product p1 = new Product("Mock Driver Nike Roshe", new GregorianCalendar(2014, 7, 11).getTime(), 300);
         Orders o1 = new Orders(new GregorianCalendar(2015, 8, 11).getTime(), 1122, 100.50f);
         
         tx.begin();
         //em.persist(seed);
         //em.persist(p4);
+        
+        //em.persist(a1);
+        //em.persist(a2);
         
         em.persist(p1);
         em.persist(o1);

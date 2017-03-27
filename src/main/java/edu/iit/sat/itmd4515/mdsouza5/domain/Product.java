@@ -5,6 +5,7 @@
  */
 package edu.iit.sat.itmd4515.mdsouza5.domain;
 
+import edu.iit.sat.itmd4515.mdsouza5.domain.security.User;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -28,11 +31,11 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "Product")
-//@NamedQueries({
-//    @NamedQuery(productName = "Product.findAll", query = "select p from Product p ")
-//    ,
-//    @NamedQuery(productName = "Product.findByName", query = "select p from Product p where p.productName = :productName")
-//})
+@NamedQueries({
+    @NamedQuery(name = "Product.findAll", query = "select p from Product p ")
+    ,
+    @NamedQuery(name = "Product.findByName", query = "select p from Product p where p.productName = :productName")
+})
 public class Product {
 
     public Product() {
@@ -44,7 +47,6 @@ public class Product {
 //        this.dateAdded = dateAdded;
 //        this.productCount = productCount;
 //    }
-
     public Product(String productName, Date dateAdded, Integer productCount) {
         this.productName = productName;
         this.dateAdded = dateAdded;
@@ -54,16 +56,16 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    
+
     @Column
     @NotNull(message = "Product Name cannot be null.")
     @Size(min = 5, max = 50, message = "Product Name Must be Greater Than 5 Characters")
     private String productName;
-    
+
     @Past(message = "Date Should be in past.")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateAdded;
-    
+
     @Transient
     private Integer productCount;
 
@@ -74,30 +76,15 @@ public class Product {
     @JoinColumn(name = "Category_Id")
     private Category category;
 
-    /**
-     * Get the value of orders
-     *
-     * @return the value of orders
-     */
     public Orders getOrders() {
         return orders;
     }
 
-    /**
-     * Set the value of orders
-     *
-     * @param orders new value of orders
-     */
     public void setOrders(Orders orders) {
         this.orders = orders;
-        
+
     }
 
-    /**
-     * Get the value of price
-     *
-     * @return the value of price
-     */
     public Integer getProductCount() {
         return productCount;
     }
@@ -177,4 +164,6 @@ public class Product {
     public String toString() {
         return "Product{" + "Id=" + Id + ", name=" + productName + ", dateAdded=" + dateAdded + ", count=" + productCount + '}';
     }
+
+    
 }

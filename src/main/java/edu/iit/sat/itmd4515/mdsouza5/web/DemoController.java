@@ -18,8 +18,6 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,9 +35,6 @@ import javax.validation.Validator;
 public class DemoController extends HttpServlet {
 
     private static final Logger LOG = Logger.getLogger(DemoController.class.getName());
-    
-    @PersistenceContext(unitName = "itmd4515PU") private EntityManager em;
-    
     
     @Resource
     private Validator validator;
