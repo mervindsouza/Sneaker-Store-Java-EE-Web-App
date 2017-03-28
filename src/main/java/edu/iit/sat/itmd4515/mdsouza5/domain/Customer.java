@@ -82,18 +82,34 @@ public class Customer {
         o.getCustomers().add(this);
     }
 
+    /**
+     *
+     */
     public Customer() {
     }
 
+    /**
+     *
+     * @param custName
+     * @param email
+     */
     public Customer(String custName, String email) {
         this.custName = custName;
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
@@ -152,10 +168,18 @@ public class Customer {
         this.orders = orders;
     }
 
+    /**
+     *
+     * @return
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     *
+     * @param user
+     */
     public void setUser(User user) {
         this.user = user;
     }

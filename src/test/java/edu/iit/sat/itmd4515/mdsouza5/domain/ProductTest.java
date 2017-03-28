@@ -35,17 +35,26 @@ public class ProductTest {
 
     private static final Logger LOG = Logger.getLogger(Driver.class.getName());
 
+    /**
+     *
+     */
     @BeforeClass
     public static void beforeClassTestFixture() {
         emf = Persistence.createEntityManagerFactory("itmd4515PU_TEST");
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
+    /**
+     *
+     */
     @AfterClass
     public static void afterClassTestFixture() {
         emf.close();
     }
 
+    /**
+     *
+     */
     @Before
     public void beforeTestFixture() {
         em = emf.createEntityManager();
@@ -115,6 +124,10 @@ public class ProductTest {
         }
 
     //@After
+
+    /**
+     *
+     */
     public void afterTestFixture() {
         Product seed
                 = em.createNamedQuery("Product.findByName", Product.class)
@@ -128,6 +141,9 @@ public class ProductTest {
         em.close();
     }
     
+    /**
+     *
+     */
     @Test
     public void validateAddedDateSunnyDay()
     {
@@ -136,6 +152,9 @@ public class ProductTest {
         assertTrue(violations.isEmpty());
     }
     
+    /**
+     *
+     */
     @Test
     public void validateAddedDateAndNullNameRainyDay()
     {
@@ -151,6 +170,9 @@ public class ProductTest {
         assertTrue(violations.size() == 2);
     }
     
+    /**
+     *
+     */
     @Test
     public void validateEmailSunnyDay()
     {
@@ -159,6 +181,9 @@ public class ProductTest {
         assertTrue(violations.isEmpty());
     }
     
+    /**
+     *
+     */
     @Test
     public void validateEmailRainyDay()
     {
@@ -168,6 +193,9 @@ public class ProductTest {
         assertFalse(violations.isEmpty());
     }
     
+    /**
+     *
+     */
     @Test
     public void validateRelationshipsSunnyDay()
     {

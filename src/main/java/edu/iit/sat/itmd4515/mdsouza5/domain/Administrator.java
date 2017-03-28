@@ -44,42 +44,82 @@ public class Administrator {
     @JoinColumn(name = "USERNAME")
     private User user;
 
+    /**
+     *
+     */
     public Administrator() {
     }
 
+    /**
+     *
+     * @param adminName
+     * @param email
+     */
     public Administrator(String adminName, String email) {
         this.adminName = adminName;
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAdminName() {
         return adminName;
     }
 
+    /**
+     *
+     * @param adminName
+     */
     public void setAdminName(String adminName) {
         this.adminName = adminName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     *
+     * @param user
+     */
     public void setUser(User user) {
         this.user = user;
     }

@@ -24,23 +24,42 @@ public class Category extends BaseEntity{
     @OneToMany(mappedBy = "category")
     private List<Product> products = new ArrayList<>();
     
+    /**
+     *
+     * @param p
+     */
     public void addProduct(Product p){
         this.products.add(p);
         p.setCategory(this);
         
     }
 
+    /**
+     *
+     */
     public Category() {
     }
 
+    /**
+     *
+     * @param categoryName
+     */
     public Category(String categoryName) {
         this.categoryName = categoryName;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Product> getProducts() {
         return products;
     }
 
+    /**
+     *
+     * @param products
+     */
     public void setProducts(List<Product> products) {
         this.products = products;
     }

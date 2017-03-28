@@ -48,13 +48,15 @@ public class AdministratorController extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Servlet AdministratorController at " + request.getContextPath() + "</h1>");
 
-            if (request.isUserInRole("ADMIN_ROLE")) {
+            if (request.isUserInRole("ADMINISTRATOR_ROLE")) {
                 Administrator a = administratorService.findByUsername(request.getRemoteUser());
                 out.println("<h2>Logged in as: " + a.getUser().getUserName() + "</h2>");
-//                out.println("<h2>Administrator Id: " + a.getId() + "</h2>");
-//                out.println("<h2>Administrator Name: " + a.getAdminName() + "</h2>");
-//                out.println("<h2>Administrator Email: " + a.getEmail() + "</h2>");
+                out.println("<h2>Administrator Id: " + a.getId() + "</h2>");
+                out.println("<h2>Administrator Name: " + a.getAdminName() + "</h2>");
+                out.println("<h2>Administrator Email: " + a.getEmail() + "</h2>");
             }
+
+            out.println("<a href=\"" + request.getContextPath() + "/logout\">Logout of the app</a>");
 
             out.println("</body>");
             out.println("</html>");

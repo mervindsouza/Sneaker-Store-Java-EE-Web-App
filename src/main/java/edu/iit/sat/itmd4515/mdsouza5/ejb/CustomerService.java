@@ -16,15 +16,27 @@ import javax.ejb.Stateless;
 @Stateless
 public class CustomerService extends BaseService<Customer> {
 
+    /**
+     *
+     */
     public CustomerService() {
         super(Customer.class);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Customer> findAll() {
         return getEntityManager().createNamedQuery("Customer.findAll", Customer.class).getResultList();
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     */
     public Customer findByUsername(String username) {
         return getEntityManager().createNamedQuery("Customer.findByUsername", Customer.class)
                 .setParameter("username", username)

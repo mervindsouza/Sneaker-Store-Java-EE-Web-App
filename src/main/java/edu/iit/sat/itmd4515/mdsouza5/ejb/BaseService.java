@@ -21,28 +21,57 @@ public abstract class BaseService<T> {
 
     private final Class<T> entityClass;
 
+    /**
+     *
+     * @param entityClass
+     */
     protected BaseService(Class entityClass) {
         this.entityClass = entityClass;
     }
 
+    /**
+     *
+     * @param entity
+     */
     public void create(T entity) {
         entityManager.persist(entity);
     }
 
+    /**
+     *
+     * @param entity
+     */
     public void update(T entity) {
         entityManager.merge(entity);
     }
 
+    /**
+     *
+     * @param entity
+     */
     public void remove(T entity) {
         entityManager.remove(entityManager.merge(entity));
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public T find(Long id) {
         return entityManager.find(entityClass, id);
     }
 
+    /**
+     *
+     * @return
+     */
     public abstract List<T> findAll();
 
+    /**
+     *
+     * @return
+     */
     protected EntityManager getEntityManager() {
         return entityManager;
     }

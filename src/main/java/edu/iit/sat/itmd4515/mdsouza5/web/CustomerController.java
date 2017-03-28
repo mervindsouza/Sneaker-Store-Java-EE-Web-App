@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -48,13 +48,16 @@ public class CustomerController extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Servlet CustomerController at " + request.getContextPath() + "</h1>");
 
-            if (request.isUserInRole("CUST_ROLE")) {
+            if (request.isUserInRole("CUSTOMER_ROLE")) {
                 Customer c = customerService.findByUsername(request.getRemoteUser());
                 out.println("<h2>Logged in as: " + c.getUser().getUserName() + "</h2>");
                 out.println("<h2>Customer Id: " + c.getId() + "</h2>");
                 out.println("<h2>Customer Name: " + c.getCustName() + "</h2>");
                 out.println("<h2>Customer Email: " + c.getEmail() + "</h2>");
             }
+            
+            out.println("<a href=\"" + request.getContextPath() + "/logout\">Logout of the app</a>");
+            
             out.println("</body>");
             out.println("</html>");
         }

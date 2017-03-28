@@ -40,11 +40,18 @@ public class Orders {
     @ManyToMany
     private List<Customer> customers = new ArrayList<>();
     
-    
-
+    /**
+     *
+     */
     public Orders() {
     }
 
+    /**
+     *
+     * @param dateOrdered
+     * @param confirmationNumber
+     * @param amount
+     */
     public Orders(Date dateOrdered, Integer confirmationNumber, Float amount) {
         this.dateOrdered = dateOrdered;
         this.confirmationNumber = confirmationNumber;
@@ -70,6 +77,10 @@ public class Orders {
         //product.setOrders(this);
     }
     
+    /**
+     *
+     * @param p
+     */
     public void addProduct(Product p){
         this.product = p;
         p.setOrders(this);
@@ -111,10 +122,18 @@ public class Orders {
         this.dateOrdered = dateOrdered;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return Id;
     }
 
+    /**
+     *
+     * @param Id
+     */
     public void setId(Long Id) {
         this.Id = Id;
     }

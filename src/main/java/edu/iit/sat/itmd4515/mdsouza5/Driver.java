@@ -20,11 +20,18 @@ import javax.persistence.Persistence;
  */
 public class Driver {
 
+    /**
+     *
+     */
     public Driver() {
     }
 
     private static final Logger LOG = Logger.getLogger(Driver.class.getName());
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         LOG.info("This is main class.");
 

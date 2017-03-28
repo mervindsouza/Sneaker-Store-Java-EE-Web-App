@@ -38,6 +38,9 @@ import javax.validation.constraints.Size;
 })
 public class Product {
 
+    /**
+     *
+     */
     public Product() {
     }
 
@@ -47,6 +50,13 @@ public class Product {
 //        this.dateAdded = dateAdded;
 //        this.productCount = productCount;
 //    }
+
+    /**
+     *
+     * @param productName
+     * @param dateAdded
+     * @param productCount
+     */
     public Product(String productName, Date dateAdded, Integer productCount) {
         this.productName = productName;
         this.dateAdded = dateAdded;
@@ -76,15 +86,27 @@ public class Product {
     @JoinColumn(name = "Category_Id")
     private Category category;
 
+    /**
+     *
+     * @return
+     */
     public Orders getOrders() {
         return orders;
     }
 
+    /**
+     *
+     * @param orders
+     */
     public void setOrders(Orders orders) {
         this.orders = orders;
 
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getProductCount() {
         return productCount;
     }
@@ -134,10 +156,18 @@ public class Product {
         this.productName = productName;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return Id;
     }
 
+    /**
+     *
+     * @param Id
+     */
     public void setId(Long Id) {
         this.Id = Id;
     }

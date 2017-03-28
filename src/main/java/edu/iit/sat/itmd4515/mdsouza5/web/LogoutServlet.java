@@ -41,8 +41,20 @@ public class LogoutServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet LogoutServlet at " + request.getContextPath() + "</h1>");
-   
             
+            if(request.isUserInRole("CUSTOMER_ROLE")){
+                 out.println("<a href=\"" + request.getContextPath() + "/customer\">Login Again to Customer Module</a>");
+                 out.println("<h3><b>OR</h3>");
+                 out.println("<a href=\"" + request.getContextPath() + "/administrator\">Login to Administrator Module.</a>");
+            }
+            else if(request.isUserInRole("ADMINISTRATOR_ROLE")){
+                 out.println("<a href=\"" + request.getContextPath() + "/administrator\">Login Again to Administrator Module.</a>");
+                 out.println("<h3><b>OR</h3>");
+                 out.println("<a href=\"" + request.getContextPath() + "/customer\">Login to Customer Module</a>");
+                 
+            }
+            
+            request.logout();
             
             out.println("</body>");
             out.println("</html>");

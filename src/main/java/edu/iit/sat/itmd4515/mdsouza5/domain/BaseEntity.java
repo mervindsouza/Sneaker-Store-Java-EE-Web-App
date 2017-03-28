@@ -21,18 +21,34 @@ public class BaseEntity {
     private Long id;    
     String categoryName;
     
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getCategoryName() {
         return categoryName;
     }
 
+    /**
+     *
+     * @param categoryName
+     */
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }

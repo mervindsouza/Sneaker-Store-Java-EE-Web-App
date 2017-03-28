@@ -27,29 +27,56 @@ public class Group {
     @ManyToMany(mappedBy = "groups")
     private List<User> users = new ArrayList<>();
 
+    /**
+     *
+     */
     public Group() {
     }
 
+    /**
+     *
+     * @return
+     */
     public String getGroupName() {
         return groupName;
     }
 
+    /**
+     *
+     * @param groupName
+     */
     public void setGroupName(String groupName) {
         this.groupName = groupName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getGroupDescription() {
         return groupDescription;
     }
 
+    /**
+     *
+     * @param groupDescription
+     */
     public void setGroupDescription(String groupDescription) {
         this.groupDescription = groupDescription;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<User> getUsers() {
         return users;
     }
 
+    /**
+     *
+     * @param users
+     */
     public void setUsers(List<User> users) {
         this.users = users;
     }
