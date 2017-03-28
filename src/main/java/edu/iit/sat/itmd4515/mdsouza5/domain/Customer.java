@@ -33,7 +33,6 @@ import javax.validation.constraints.Pattern;
 //@NamedQuery(
 //        name = "Customer.findEmail",
 //        query = "select c from Customer c where c.email = :email")
-
 @NamedQueries({
     @NamedQuery(
             name = "Customer.findEmail",
@@ -43,6 +42,12 @@ import javax.validation.constraints.Pattern;
             name = "Customer.findAll",
             query = "select c from Customer c"
     )
+    ,
+    @NamedQuery(
+            name = "Customer.findByUsername",
+            query = "select c from Customer c where c.user.userName = :username"
+    )
+
 })
 
 public class Customer {
@@ -59,16 +64,14 @@ public class Customer {
     private String email;
 
     @ManyToMany(mappedBy = "customers", cascade = CascadeType.PERSIST)
-    @JoinTable(name = "Customers_Orders", 
+    @JoinTable(name = "Customers_Orders",
             joinColumns = @JoinColumn(name = "cust_id"),
             inverseJoinColumns = @JoinColumn(name = "odr_id"))
     private List<Orders> orders = new ArrayList<>();
-    
+
     @OneToOne
     @JoinColumn(name = "USERNAME")
     private User user;
-
-
 
     /**
      *
@@ -148,9 +151,11 @@ public class Customer {
     public void setOrders(List<Orders> orders) {
         this.orders = orders;
     }
+
     public User getUser() {
         return user;
     }
+
     public void setUser(User user) {
         this.user = user;
     }

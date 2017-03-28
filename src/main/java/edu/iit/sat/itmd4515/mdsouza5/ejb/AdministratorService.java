@@ -20,7 +20,13 @@ public class AdministratorService extends BaseService<Administrator> {
 
     @Override
     public List<Administrator> findAll() {
-        return getEntityManager().createNamedQuery("Administrator.FindAll", Administrator.class).getResultList();
+        return getEntityManager().createNamedQuery("Administrator.findAll", Administrator.class).getResultList();
+    }
+    
+    public Administrator findByUsername(String username){
+        return getEntityManager().createNamedQuery("Administrator.findByUsername", Administrator.class)
+                .setParameter("username", username)
+                .getSingleResult();
     }
 
 }

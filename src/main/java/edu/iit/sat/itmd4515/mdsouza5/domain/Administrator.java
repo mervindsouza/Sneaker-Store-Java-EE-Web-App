@@ -23,11 +23,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Administrator")
 @NamedQueries({
-    @NamedQuery(name = "Administrator.FindAll",
+    @NamedQuery(name = "Administrator.findAll",
             query = "select a from Administrator a")
     ,
-    @NamedQuery(name = "Administrator.FindAllByName",
+    @NamedQuery(name = "Administrator.findAllByName",
             query = "select a from Administrator a where a.adminName = :adminName")
+    ,
+    @NamedQuery(name = "Administrator.findByUsername",
+            query = "select a from Administrator a where a.user.userName = :username")
 })
 public class Administrator {
 
@@ -36,7 +39,7 @@ public class Administrator {
     private Long id;
     private String adminName;
     private String email;
-    
+
     @OneToOne
     @JoinColumn(name = "USERNAME")
     private User user;
@@ -72,7 +75,7 @@ public class Administrator {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     public User getUser() {
         return user;
     }
@@ -85,7 +88,5 @@ public class Administrator {
     public String toString() {
         return "Administrator{" + "id=" + id + ", adminName=" + adminName + ", email=" + email + ", user=" + user + '}';
     }
-    
-    
 
 }

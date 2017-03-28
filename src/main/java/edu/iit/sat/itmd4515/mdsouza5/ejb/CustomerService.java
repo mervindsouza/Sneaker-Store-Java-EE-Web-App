@@ -8,40 +8,27 @@ package edu.iit.sat.itmd4515.mdsouza5.ejb;
 import edu.iit.sat.itmd4515.mdsouza5.domain.Customer;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author mervin
  */
 @Stateless
-public class CustomerService {
-    
-    @PersistenceContext(unitName = "itmd4515PU")
-    private EntityManager em;
-    
+public class CustomerService extends BaseService<Customer> {
+
     public CustomerService() {
+        super(Customer.class);
     }
-    
-    public void create(Customer c) {
-        em.persist(c);
-    }
-    
-    public void update(Customer c) {
-        em.merge(c);
-    }
-    
-    public void remove(Customer c) {
-        em.remove(em.merge(c));
-    }
-    
-    public Customer find(Long id) {
-        return em.find(Customer.class, id);
-    }
-    
+
+    @Override
     public List<Customer> findAll() {
-        return em.createNamedQuery("Customer.findAll", Customer.class).getResultList();
+        return getEntityManager().createNamedQuery("Customer.findAll", Customer.class).getResultList();
     }
-    
+
+    public Customer findByUsername(String username) {
+        return getEntityManager().createNamedQuery("Customer.findByUsername", Customer.class)
+                .setParameter("username", username)
+                .getSingleResult();
+
+    }
 }
