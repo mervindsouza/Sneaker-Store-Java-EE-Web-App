@@ -26,13 +26,20 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Project name</a>
+                        <a class="navbar-brand" href="#">Sneaker Store</a>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><h:link outcome="/welcome.xhtml" value="Home" /></li>
+
+                            <ui:fragment rendered="#{loginController.isAdminstrator}">
+                                <li><h:link outcome="/administrator/welcome.xhtml" value="Administrator Module" /></li>
+                            </ui:fragment>
+
+                            <ui:fragment rendered="#{loginController.isCustomer}">
+                                <li><h:link outcome="/customer/welcome.xhtml" value="Customer Module" /></li>
+                            </ui:fragment>
+                            
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -47,7 +54,7 @@
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><h:form><h:commandLink action="#{loginController.doLogout()}" value="Logout"></h:commandLink></h:form></li>
+                            <li><h:form><h:commandLink class="navbar-text" action="#{loginController.doLogout()}" value="Logout"></h:commandLink></h:form></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div><!--/.container-fluid -->
