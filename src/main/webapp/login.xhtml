@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/publicTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="title">
+        Login Page - Sneaker Store
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="container">
+            <h2>Login Module</h2>
+            <h:form>
+                <h:panelGroup styleClass="#{j_username.valid ? 'form-group' : 'form-group has-error'}" layout="block">
+                    <h:outputLabel class="control-label col-sm-2" for="j_username" value="Username"></h:outputLabel>
+                    <div class="col-sm-10">
+                        <h:inputText binding="#{j_username}" class="form-control" id="j_username" value="#{loginController.username}"/>
+                        <h:message for="j_username" style="color: red" />
+                    </div>
+                </h:panelGroup>
+                <h:panelGroup styleClass="#{j_password.valid ? 'form-group' : 'form-group has-error'}" layout="block">
+                    <h:outputLabel class="control-label col-sm-2" for="j_password" value="Password"></h:outputLabel>
+                    <div class="col-sm-10">          
+                        <h:inputSecret binding="#{j_password}" class="form-control" id="j_password" value="#{loginController.password}"/>
+                        <h:message for="j_password" style="color: red"/>
+                    </div>
+                </h:panelGroup>
+                <div class="form-group">        
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <h:commandButton class="btn btn-default" value="Login" action="#{loginController.doLogin()}" />
+                    </div>
+                </div>
+            </h:form>
+
+        </div>
+    </ui:define>
+
+</ui:composition>

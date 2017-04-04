@@ -41,13 +41,11 @@ public class Driver {
 
         Product p1 = new Product("Mock Driver Nike Roshe", new GregorianCalendar(2014, 7, 11).getTime(), 300);
         Orders o1 = new Orders(new GregorianCalendar(2015, 8, 11).getTime(), 1122, 100.50f);
-        
+
         //1. setting-reverse side relationship
         //p1.setOrders(o1);
-        
         //2. setting from owning side
         //o1.setProduct(p1);
-        
         tx.begin();
 
         em.persist(p1);

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
-        <action>
-            <actionName>CUSTOM-ITMD4515 Sonar</actionName>
-            <displayName>ITMD4515 Sonar</displayName>
-            <goals>
-                <goal>sonar:sonar</goal>
-            </goals>
-            <properties>
-                <sonar.host.url>https://wheaton.sat.iit.edu/sonar/</sonar.host.url>
-                <sonar.login>c3f97157231857ee1ffc2b3dc5cc258fabb5fa5a</sonar.login>
-            </properties>
-        </action>
-    </actions>
+    <action>
+        <actionName>CUSTOM-ITMD4515 Sonar</actionName>
+        <displayName>ITMD4515 Sonar</displayName>
+        <goals>
+            <goal>sonar:sonar</goal>
+        </goals>
+        <properties>
+            <sonar.host.url>https://wheaton.sat.iit.edu/sonar/</sonar.host.url>
+            <sonar.login>c3f97157231857ee1ffc2b3dc5cc258fabb5fa5a</sonar.login>
+        </properties>
+    </action>
+</actions>

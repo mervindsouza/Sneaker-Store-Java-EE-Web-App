@@ -50,7 +50,6 @@ public class Product {
 //        this.dateAdded = dateAdded;
 //        this.productCount = productCount;
 //    }
-
     /**
      *
      * @param productName
@@ -195,5 +194,4 @@ public class Product {
         return "Product{" + "Id=" + Id + ", name=" + productName + ", dateAdded=" + dateAdded + ", count=" + productCount + '}';
     }
 
-    
 }

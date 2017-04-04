@@ -1,28 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
         <title>Login - Sneaker Store</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-
+    </h:head>
+    <h:body>
         <div class="container">
             <h2>Login Module</h2>
             <form class="form-horizontal" method="post" action="j_security_check">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="j_username">UserName:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="j_username" name="j_username" required />
+                        <input type="text" class="form-control" id="j_username" name="j_username" required="true"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="j_password">Password:</label>
                     <div class="col-sm-10">          
-                        <input type="password" class="form-control" id="j_password" name="j_password" required />
+                        <input type="password" class="form-control" id="j_password" name="j_password" required ="true"/>
                     </div>
                 </div>
                 <div class="form-group">        
@@ -32,6 +33,6 @@
                 </div>
             </form>
         </div>
-
-    </body>
+    </h:body>
 </html>
+

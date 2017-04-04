@@ -13,25 +13,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 /**
  *
  * @author mervin
  */
 @Entity
 @Table(name = "Category")
-public class Category extends BaseEntity{
-       
+public class Category extends BaseEntity {
+
     @OneToMany(mappedBy = "category")
     private List<Product> products = new ArrayList<>();
-    
+
     /**
      *
      * @param p
      */
-    public void addProduct(Product p){
+    public void addProduct(Product p) {
         this.products.add(p);
         p.setCategory(this);
-        
+
     }
 
     /**

@@ -1,10 +1,10 @@
 insert ignore into sec_group(GROUPNAME,GROUPDESCRIPTION) values ('CUSTOMERS','This group has customers.');
 insert ignore into sec_group(GROUPNAME,GROUPDESCRIPTION) values ('ADMINISTRATORS','This group has administrators.');
 
-insert ignore into sec_user(USERNAME,PASSWORD) values ('customer1','customer1');
-insert ignore into sec_user(USERNAME,PASSWORD) values ('customer2','customer2');
-insert ignore into sec_user(USERNAME,PASSWORD) values ('admin1','admin1');
-insert ignore into sec_user(USERNAME,PASSWORD) values ('admin2','admin2');
+insert ignore into sec_user(USERNAME,PASSWORD) values ('customer1', SHA2('customer1', 256));
+insert ignore into sec_user(USERNAME,PASSWORD) values ('customer2', SHA2('customer2', 256));
+insert ignore into sec_user(USERNAME,PASSWORD) values ('admin1', SHA2('admin1', 256));
+insert ignore into sec_user(USERNAME,PASSWORD) values ('admin2', SHA2('admin2', 256));
 
 insert ignore into User_Groups(USERNAME,GROUPNAME) values ('customer1','CUSTOMERS');
 insert ignore into User_Groups(USERNAME,GROUPNAME) values ('customer2','CUSTOMERS');

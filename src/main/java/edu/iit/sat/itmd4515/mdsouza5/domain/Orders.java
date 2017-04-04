@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Orders")
 public class Orders {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
@@ -39,7 +39,7 @@ public class Orders {
 
     @ManyToMany
     private List<Customer> customers = new ArrayList<>();
-    
+
     /**
      *
      */
@@ -76,12 +76,12 @@ public class Orders {
         this.product = product;
         //product.setOrders(this);
     }
-    
+
     /**
      *
      * @param p
      */
-    public void addProduct(Product p){
+    public void addProduct(Product p) {
         this.product = p;
         p.setOrders(this);
     }

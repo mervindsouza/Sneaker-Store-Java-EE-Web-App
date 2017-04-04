@@ -16,11 +16,12 @@ import javax.persistence.MappedSuperclass;
  */
 @MappedSuperclass
 public class BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;    
+    private Long id;
     String categoryName;
-    
+
     /**
      *
      * @return
@@ -36,7 +37,7 @@ public class BaseEntity {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     /**
      *
      * @return
@@ -52,5 +53,5 @@ public class BaseEntity {
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
-      
+
 }

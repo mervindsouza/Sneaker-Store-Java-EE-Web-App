@@ -5,6 +5,8 @@
  */
 package edu.iit.sat.itmd4515.mdsouza5.domain.security;
 
+import com.google.common.hash.Hashing;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -12,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 /**
@@ -26,7 +30,7 @@ public class User {
     private String userName;
     private String password;
     private Boolean enabled;
-
+    
     @ManyToMany
     @JoinTable(name = "User_Groups",
             joinColumns = @JoinColumn(name = "USERNAME"),
@@ -35,24 +39,16 @@ public class User {
 
     /**
      *
-     * @param g
-     */
-    public void addGroups(Group g) {
-        if (!this.groups.contains(g)) {
-            this.groups.add(g);
-        }
-        if (!g.getUsers().contains(this)) {
-            g.getUsers().add(this);
-        }
-    }
-
-    /**
-     *
      */
     public User() {
-
     }
-
+    
+    @PrePersist
+    @PreUpdate
+    private void hashPassword(){
+        String sha256Hex = Hashing.sha256().hashString(this.password, StandardCharsets.UTF_8).toString();
+        this.password = sha256Hex;
+    }
     /**
      *
      * @return
@@ -115,6 +111,15 @@ public class User {
      */
     public void setGroups(List<Group> groups) {
         this.groups = groups;
+    }
+
+    public void addGroups(Group g) {
+        if (!this.groups.contains(g)) {
+            this.groups.add(g);
+        }
+        if (!g.getUsers().contains(this)) {
+            g.getUsers().add(this);
+        }
     }
 
 }
