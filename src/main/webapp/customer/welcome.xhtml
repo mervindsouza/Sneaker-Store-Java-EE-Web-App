@@ -2,14 +2,63 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../WEB-INF/templates/authTemplate.xhtml">
+                template="./../WEB-INF/templates/authTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
         Customer Welcome.
     </ui:define>
 
     <ui:define name="content">
-        Hello Customer - #{loginController.remoteUser}
+        Hello Customer. <br />The below table displays the details for Customer who is logged in as - #{loginController.remoteUser.toUpperCase()}<br />
+
+        <h:dataTable class="table table-stripped" value="#{customerService.findByUsername(loginController.remoteUser)}" var="customer">
+
+            <!--Id Column-->
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Id"/>
+                </f:facet>
+                <h:outputText value="#{customer.id}"/>
+            </h:column>
+
+            <!--Customer Column-->
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Customer Name"/>
+                </f:facet>
+                <h:outputText value="#{customer.custName}"/>
+            </h:column>
+
+            <!--Email Column-->
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Email"/>
+                </f:facet>
+                <h:outputText value="#{customer.email}"/>
+            </h:column>
+            
+            <!--BirthDate Column-->
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Email"/>
+                </f:facet>
+                <h:outputText value="#{customer.birthdate}">
+                    <f:convertDateTime type="both" dateStyle="short" timeStyle="full" timeZone="#{applicationConfig.timeZone}" />
+                </h:outputText>                
+            </h:column>
+
+            <!--Username Column-->
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="UserName"/>
+                </f:facet>
+                <h:outputText value="#{customer.user.userName}"/>
+            </h:column>
+
+        </h:dataTable>
+
     </ui:define>
 
 </ui:composition>

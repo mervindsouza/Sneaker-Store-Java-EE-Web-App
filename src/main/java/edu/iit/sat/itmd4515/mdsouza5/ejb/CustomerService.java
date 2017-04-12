@@ -8,11 +8,13 @@ package edu.iit.sat.itmd4515.mdsouza5.ejb;
 import edu.iit.sat.itmd4515.mdsouza5.domain.Customer;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Named;
 
 /**
  *
  * @author mervin
  */
+@Named
 @Stateless
 public class CustomerService extends BaseService<Customer> {
 

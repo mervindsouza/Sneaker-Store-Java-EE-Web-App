@@ -7,6 +7,7 @@ package edu.iit.sat.itmd4515.mdsouza5.domain;
 
 import edu.iit.sat.itmd4515.mdsouza5.domain.security.User;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -20,6 +21,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -62,6 +65,8 @@ public class Customer {
             + "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
             message = "The Email that you have entered is invalid.")
     private String email;
+    
+
 
     @ManyToMany(mappedBy = "customers", cascade = CascadeType.PERSIST)
     @JoinTable(name = "Customers_Orders",
@@ -72,6 +77,14 @@ public class Customer {
     @OneToOne
     @JoinColumn(name = "USERNAME")
     private User user;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date birthdate;
+
+    public Customer(String custName, String email, Date birthdate) {
+        this.custName = custName;
+        this.email = email;
+        this.birthdate = birthdate;
+    }
 
     /**
      *
@@ -97,6 +110,9 @@ public class Customer {
         this.custName = custName;
         this.email = email;
     }
+    
+    
+    
 
     /**
      *
@@ -183,5 +199,17 @@ public class Customer {
     public void setUser(User user) {
         this.user = user;
     }
+    public Date getBirthdate() {
+        return birthdate;
+    }
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
 
+    @Override
+    public String toString() {
+        return "Customer{" + "id=" + id + ", custName=" + custName + ", email=" + email + ", birthdate=" + birthdate + '}';
+    }
+
+    
 }
