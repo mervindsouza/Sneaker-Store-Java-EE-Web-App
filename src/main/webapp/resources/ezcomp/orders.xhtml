@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="orders" required="true" type="edu.iit.sat.itmd4515.mdsouza5.domain.Orders" />
+        <cc:attribute name="readonly" type="java.lang.Boolean" default="true" required="false" />
+        <cc:attribute name="action" required="false" method-signature="java.lang.String action()" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:form>
+            <h:panelGroup layout="block" class="form-group">
+                <h:outputLabel for="orderId" value="Orders ID #{cc.attrs.orders.id}" />
+                <h:inputHidden class="form-control" id="orderId" value="#{cc.attrs.orders.id}" />
+                <h:message for="orderId" style="color: red" />
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" class="form-group">
+                <h:outputLabel for="confirmationNumber" value="Confirmation Number" />
+                <h:inputText class="form-control" id="confirmationNumber" value="#{customerPortalController.orders.id}" />
+                <h:message for="orderId" style="color: red" />
+                <h:commandButton class="btn btn-default" action="#{cc.attrs.action}" value="Save Details" />
+            </h:panelGroup>
+        </h:form>
+
+    </cc:implementation>
+</html>

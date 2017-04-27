@@ -14,6 +14,9 @@ import javax.faces.context.FacesContext;
  */
 public abstract class BaseController {
 
+    /**
+     *
+     */
     protected FacesContext context;
     
     protected BaseController() {

@@ -20,7 +20,7 @@ public class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    String categoryName;
+    String name;
 
     /**
      *
@@ -43,7 +43,7 @@ public class BaseEntity {
      * @return
      */
     public String getCategoryName() {
-        return categoryName;
+        return name;
     }
 
     /**
@@ -51,7 +51,7 @@ public class BaseEntity {
      * @param categoryName
      */
     public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+        this.name = categoryName;
     }
 
 }

@@ -21,7 +21,7 @@ import javax.persistence.Table;
  * @author mervin
  */
 @Entity
-@Table(name = "Administrator")
+@Table(name = "administrator")
 @NamedQueries({
     @NamedQuery(name = "Administrator.findAll",
             query = "select a from Administrator a")

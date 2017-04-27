@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,6 +26,8 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "Orders")
+@NamedQueries({
+    @NamedQuery(name = "Orders.findAll",query = "select o from Orders o")})
 public class Orders {
 
     @Id
@@ -76,7 +80,9 @@ public class Orders {
         this.product = product;
         //product.setOrders(this);
     }
-
+    
+    
+    
     /**
      *
      * @param p

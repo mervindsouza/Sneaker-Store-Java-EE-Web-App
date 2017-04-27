@@ -18,7 +18,7 @@ public abstract class BaseService<T> {
 
     @PersistenceContext(unitName = "itmd4515PU")
     private EntityManager entityManager;
-
+    
     private final Class<T> entityClass;
 
     /**

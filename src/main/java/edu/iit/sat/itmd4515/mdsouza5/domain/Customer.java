@@ -77,6 +77,7 @@ public class Customer {
     @OneToOne
     @JoinColumn(name = "USERNAME")
     private User user;
+    
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthdate;
 

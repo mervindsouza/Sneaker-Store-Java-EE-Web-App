@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -24,13 +25,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "sec_user")
+@NamedQuery(name = "User.findAll", query = "select u from User u")
 public class User {
 
     @Id
     private String userName;
     private String password;
     private Boolean enabled;
-    
+
     @ManyToMany
     @JoinTable(name = "User_Groups",
             joinColumns = @JoinColumn(name = "USERNAME"),
@@ -42,13 +44,25 @@ public class User {
      */
     public User() {
     }
-    
+
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public User(String userName, String password, Boolean enabled) {
+        this.userName = userName;
+        this.password = password;
+        this.enabled = enabled;
+    }
+
     @PrePersist
     @PreUpdate
-    private void hashPassword(){
+    private void hashPassword() {
         String sha256Hex = Hashing.sha256().hashString(this.password, StandardCharsets.UTF_8).toString();
         this.password = sha256Hex;
     }
+
     /**
      *
      * @return
