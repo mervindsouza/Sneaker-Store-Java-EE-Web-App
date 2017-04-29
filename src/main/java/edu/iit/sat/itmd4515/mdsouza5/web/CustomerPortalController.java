@@ -87,17 +87,17 @@ public class CustomerPortalController extends BaseController {
 
     public String doEditOrders(Orders o) {
         this.orders = o;
-        o.setProduct(product);
+        //o.setProduct(product);
         return "/customer/editOrders.xhtml";
     }
 
     public String doDeleteOrders(Orders o) {
-        o.setProduct(product);
+        //o.setProduct(product);
         return "/customer/welcome.xhtml";
     }
 
     public String doApproveOrders(Orders o) {
-        o.setProduct(product);
+        //o.setProduct(product);
         return "/customer/welcome.xhtml";
     }
 

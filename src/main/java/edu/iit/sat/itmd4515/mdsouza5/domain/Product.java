@@ -5,7 +5,6 @@
  */
 package edu.iit.sat.itmd4515.mdsouza5.domain;
 
-import edu.iit.sat.itmd4515.mdsouza5.domain.security.User;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,11 +15,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -37,29 +34,13 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Product.findByName", query = "select p from Product p where p.productName = :productName")
 })
 public class Product {
-
+    
+    
+    
     /**
      *
      */
     public Product() {
-    }
-
-//    public Product(Long Id, String productName, Date dateAdded, Integer productCount) {
-//        this.Id = Id;
-//        this.productName = productName;
-//        this.dateAdded = dateAdded;
-//        this.productCount = productCount;
-//    }
-    /**
-     *
-     * @param productName
-     * @param dateAdded
-     * @param productCount
-     */
-    public Product(String productName, Date dateAdded, Integer productCount) {
-        this.productName = productName;
-        this.dateAdded = dateAdded;
-        this.productCount = productCount;
     }
 
     @Id
@@ -73,33 +54,39 @@ public class Product {
 
     @Past(message = "Date Should be in past.")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateAdded;
+    private Date productDateAdded;
 
-    @Transient
+    //@Transient
     private Integer productCount;
+    private double productSize;
+    private double productValue;
+    private String productColor;
 
-    @OneToOne(mappedBy = "product")
-    private Orders orders;
+    public Product(String productName, Date productDateAdded, Integer productCount) {
+        this.productName = productName;
+        this.productDateAdded = productDateAdded;
+        this.productCount = productCount;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ORDER_ID")
+    private Orders order;
 
     @ManyToOne
     @JoinColumn(name = "Category_Id")
     private Category category;
+    
+    @ManyToOne
+    @JoinColumn(name = "ADMIN_ID")
+    private Administrator administrator;
 
-    /**
-     *
-     * @return
-     */
-    public Orders getOrders() {
-        return orders;
-    }
-
-    /**
-     *
-     * @param orders
-     */
-    public void setOrders(Orders orders) {
-        this.orders = orders;
-
+    public Product(String productName, Date productDateAdded, Integer productCount, double productSize, double productValue, String productColor) {
+        this.productName = productName;
+        this.productDateAdded = productDateAdded;
+        this.productCount = productCount;
+        this.productSize = productSize;
+        this.productValue = productValue;
+        this.productColor = productColor;
     }
 
     /**
@@ -120,21 +107,21 @@ public class Product {
     }
 
     /**
-     * Get the value of dateAdded
+     * Get the value of productDateAdded
      *
-     * @return the value of dateAdded
+     * @return the value of productDateAdded
      */
-    public Date getDateAdded() {
-        return dateAdded;
+    public Date getProductDateAdded() {
+        return productDateAdded;
     }
 
     /**
-     * Set the value of dateAdded
+     * Set the value of productDateAdded
      *
-     * @param dateAdded new value of dateAdded
+     * @param productDateAdded new value of productDateAdded
      */
-    public void setDateAdded(Date dateAdded) {
-        this.dateAdded = dateAdded;
+    public void setProductDateAdded(Date productDateAdded) {
+        this.productDateAdded = productDateAdded;
     }
 
     /**
@@ -191,7 +178,43 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "Id=" + Id + ", name=" + productName + ", dateAdded=" + dateAdded + ", count=" + productCount + '}';
+        return "Product{" + "Id=" + Id + ", name=" + productName + ", dateAdded=" + productDateAdded + ", count=" + productCount + '}';
+    }
+
+    public double getProductSize() {
+        return productSize;
+    }
+
+    public void setProductSize(double productSize) {
+        this.productSize = productSize;
+    }
+
+    public double getProductValue() {
+        return productValue;
+    }
+
+    public void setProductValue(double productValue) {
+        this.productValue = productValue;
+    }
+
+    public String getProductColor() {
+        return productColor;
+    }
+
+    public void setProductColor(String productColor) {
+        this.productColor = productColor;
+    }
+    public Orders getOrder() {
+        return order;
+    }
+    public void setOrder(Orders order) {
+        this.order = order;
+    }
+    public Administrator getAdministrator() {
+        return administrator;
+    }
+    public void setAdministrator(Administrator administrator) {
+        this.administrator = administrator;
     }
 
 }

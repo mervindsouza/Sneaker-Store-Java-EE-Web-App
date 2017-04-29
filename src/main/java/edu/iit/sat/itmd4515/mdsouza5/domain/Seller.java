@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -26,12 +27,12 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "seller")
 @SuppressWarnings("SerializableClass")
-//@NamedQueries({
-//    @NamedQuery(name = "Seller.findAll", query = "select s from seller s")
-//    ,
-//    @NamedQuery(name = "Seller.findByUsername", query = "select s from seller where s.user.userName =:username")
-//    ,
-//    @NamedQuery(name = "Seller.findByName", query = "select s from seller s.sellerName = :sellerName")})
+@NamedQueries({
+    @NamedQuery(name = "Seller.findAll", query = "select s from Seller s")
+    ,
+    @NamedQuery(name = "Seller.findByUsername", query = "select s from Seller s where s.user.userName =:username")
+    ,
+    @NamedQuery(name = "Seller.findByName", query = "select s from Seller s where s.sellerName = :sellerName")})
 public class Seller {
 
     @Id
@@ -43,20 +44,24 @@ public class Seller {
     private Date dateCreated;
     private String sellerLocation;
 
-    @OneToOne
-    @JoinColumn(name = "USERNAME")
-    private User user;
+    @ManyToOne
+    @JoinColumn(name = "ADMIN_ID")
+    private Administrator administrator;
 
     public Seller() {
     }
-    
+
     public Seller(String sellerName, String sellerEmail, Date dateCreated, String sellerLocation) {
         this.sellerName = sellerName;
         this.sellerEmail = sellerEmail;
         this.dateCreated = dateCreated;
         this.sellerLocation = sellerLocation;
     }
-    
+
+    @OneToOne
+    @JoinColumn(name = "USERNAME")
+    private User user;
+
     public Long getId() {
         return id;
     }
@@ -103,6 +108,14 @@ public class Seller {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Administrator getAdministrator() {
+        return administrator;
+    }
+
+    public void setAdministrator(Administrator administrator) {
+        this.administrator = administrator;
     }
 
 }

@@ -9,6 +9,10 @@
     <role-name>CUSTOMER_ROLE</role-name>
     <group-name>CUSTOMERS</group-name>
   </security-role-mapping>
+  <security-role-mapping>
+    <role-name>SELLER_ROLE</role-name>
+    <group-name>SELLERS</group-name>
+  </security-role-mapping>
   <class-loader delegate="true"/>
   <jsp-config>
     <property name="keepgenerated" value="true">

@@ -44,6 +44,10 @@ public class LoginController extends BaseController {
     public Boolean isCustomer() {
         return context.getExternalContext().isUserInRole("CUSTOMER_ROLE");
     }
+    
+    public Boolean isSeller(){
+        return context.getExternalContext().isUserInRole("SELLER_ROLE");
+    }
 
     public String doLogin() {
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();

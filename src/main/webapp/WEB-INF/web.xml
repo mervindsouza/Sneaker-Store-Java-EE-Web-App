@@ -61,9 +61,22 @@
             <url-pattern>/welcome.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <description>ADMINISTRATOR OR CUSTOMER ONLY</description>
+            <description>ADMINISTRATOR OR CUSTOMER ONLY OR SELLERS ONLY</description>
             <role-name>ADMINISTRATOR_ROLE</role-name>
             <role-name>CUSTOMER_ROLE</role-name>
+            <role-name>SELLER_ROLE</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>SELLER SECURITY CONSTRAINT</display-name>
+        <web-resource-collection>
+            <web-resource-name>SELLER CONTENT</web-resource-name>
+            <description>SELLER CONTENT</description>
+            <url-pattern>/seller/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>SELLERS ONLY</description>
+            <role-name>SELLER_ROLE</role-name>
         </auth-constraint>
     </security-constraint>
     <login-config>
@@ -81,5 +94,9 @@
     <security-role>
         <description>CUSTOMER ROLE</description>
         <role-name>CUSTOMER_ROLE</role-name>
+    </security-role>
+    <security-role>
+        <description>SELLER ROLE</description>
+        <role-name>SELLER_ROLE</role-name>
     </security-role>
 </web-app>

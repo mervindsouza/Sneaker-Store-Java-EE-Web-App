@@ -12,9 +12,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,7 +30,9 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Orders")
 @NamedQueries({
-    @NamedQuery(name = "Orders.findAll",query = "select o from Orders o")})
+    @NamedQuery(name = "Orders.findAll", query = "select o from Orders o")
+    ,
+    @NamedQuery(name = "Orders.findByConfirmationNumber", query = "select o from Orders o where o.confirmationNumber = :confirmationNumber")})
 public class Orders {
 
     @Id
@@ -36,13 +41,18 @@ public class Orders {
     @Temporal(TemporalType.DATE)
     private Date dateOrdered;
     private Integer confirmationNumber;
-    private Float amount;
+    private Float orderValue;
+    private String orderStatus;
 
-    @OneToOne
-    private Product product;
+    @OneToMany(mappedBy = "order")
+    private List<Product> products;
 
     @ManyToMany
     private List<Customer> customers = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "ADMIN_ID")
+    private Administrator administrator;
 
     /**
      *
@@ -54,130 +64,80 @@ public class Orders {
      *
      * @param dateOrdered
      * @param confirmationNumber
-     * @param amount
+     * @param orderValue
      */
-    public Orders(Date dateOrdered, Integer confirmationNumber, Float amount) {
+    public Orders(Date dateOrdered, Integer confirmationNumber, Float orderValue) {
         this.dateOrdered = dateOrdered;
         this.confirmationNumber = confirmationNumber;
-        this.amount = amount;
+        this.orderValue = orderValue;
     }
 
-    /**
-     * Get the value of product
-     *
-     * @return the value of product
-     */
-    public Product getProduct() {
-        return product;
-    }
-
-    /**
-     * Set the value of product
-     *
-     * @param product new value of product
-     */
-    public void setProduct(Product product) {
-        this.product = product;
-        //product.setOrders(this);
-    }
-    
-    
-    
-    /**
-     *
-     * @param p
-     */
-    public void addProduct(Product p) {
-        this.product = p;
-        p.setOrders(this);
-    }
-
-    /**
-     * Get the value of confirmationNumber
-     *
-     * @return the value of confirmationNumber
-     */
+//    public void addProduct(Product p) {
+//        this.product = (List<Product>) p;
+//        p.setOrders(this);
+//    }
     public Integer getConfirmationNumber() {
         return confirmationNumber;
     }
 
-    /**
-     * Set the value of confirmationNumber
-     *
-     * @param confirmationNumber new value of confirmationNumber
-     */
     public void setConfirmationNumber(Integer confirmationNumber) {
         this.confirmationNumber = confirmationNumber;
     }
 
-    /**
-     * Get the value of dateOrdered
-     *
-     * @return the value of dateOrdered
-     */
     public Date getDateOrdered() {
         return dateOrdered;
     }
 
-    /**
-     * Set the value of dateOrdered
-     *
-     * @param dateOrdered new value of dateOrdered
-     */
     public void setDateOrdered(Date dateOrdered) {
         this.dateOrdered = dateOrdered;
     }
 
-    /**
-     *
-     * @return
-     */
     public Long getId() {
         return Id;
     }
 
-    /**
-     *
-     * @param Id
-     */
     public void setId(Long Id) {
         this.Id = Id;
     }
 
-    /**
-     * Get the value of amount
-     *
-     * @return the value of amount
-     */
-    public Float getAmount() {
-        return amount;
+    public Float getOrderValue() {
+        return orderValue;
     }
 
-    /**
-     * Set the value of amount
-     *
-     * @param amount new value of amount
-     */
-    public void setAmount(Float amount) {
-        this.amount = amount;
+    public void setOrderValue(Float orderValue) {
+        this.orderValue = orderValue;
     }
 
-    /**
-     * Get the value of customers
-     *
-     * @return the value of customers
-     */
     public List<Customer> getCustomers() {
         return customers;
     }
 
-    /**
-     * Set the value of customers
-     *
-     * @param customers new value of customers
-     */
     public void setCustomers(List<Customer> customers) {
         this.customers = customers;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public Administrator getAdministrator() {
+        return administrator;
+    }
+
+    public void setAdministrator(Administrator administrator) {
+        this.administrator = administrator;
     }
 
 }

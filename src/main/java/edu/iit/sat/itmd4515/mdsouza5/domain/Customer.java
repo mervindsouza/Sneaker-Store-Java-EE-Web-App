@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -35,11 +36,11 @@ import javax.validation.constraints.Pattern;
 
 //@NamedQuery(
 //        name = "Customer.findEmail",
-//        query = "select c from Customer c where c.email = :email")
+//        query = "select c from Customer c where c.custEmail = :custEmail")
 @NamedQueries({
     @NamedQuery(
             name = "Customer.findEmail",
-            query = "select c from Customer c where c.email = :email")
+            query = "select c from Customer c where c.custEmail = :custEmail")
     ,
     @NamedQuery(
             name = "Customer.findAll",
@@ -64,9 +65,11 @@ public class Customer {
             + "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
             + "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
             message = "The Email that you have entered is invalid.")
-    private String email;
-    
-
+    private String custEmail;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date custBirthdate;
+    private String custPaymethod;
+    private String custGender;
 
     @ManyToMany(mappedBy = "customers", cascade = CascadeType.PERSIST)
     @JoinTable(name = "Customers_Orders",
@@ -77,14 +80,15 @@ public class Customer {
     @OneToOne
     @JoinColumn(name = "USERNAME")
     private User user;
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date birthdate;
+
+    @ManyToOne
+    @JoinColumn(name = "ADMIN_ID")
+    private Administrator administrator;
 
     public Customer(String custName, String email, Date birthdate) {
         this.custName = custName;
-        this.email = email;
-        this.birthdate = birthdate;
+        this.custEmail = email;
+        this.custBirthdate = birthdate;
     }
 
     /**
@@ -109,11 +113,8 @@ public class Customer {
      */
     public Customer(String custName, String email) {
         this.custName = custName;
-        this.email = email;
+        this.custEmail = email;
     }
-    
-    
-    
 
     /**
      *
@@ -132,21 +133,21 @@ public class Customer {
     }
 
     /**
-     * Get the value of email
+     * Get the value of custEmail
      *
-     * @return the value of email
+     * @return the value of custEmail
      */
-    public String getEmail() {
-        return email;
+    public String getCustEmail() {
+        return custEmail;
     }
 
     /**
-     * Set the value of email
+     * Set the value of custEmail
      *
-     * @param email new value of email
+     * @param custEmail new value of custEmail
      */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCustEmail(String custEmail) {
+        this.custEmail = custEmail;
     }
 
     /**
@@ -200,17 +201,42 @@ public class Customer {
     public void setUser(User user) {
         this.user = user;
     }
-    public Date getBirthdate() {
-        return birthdate;
+
+    public Date getCustBirthdate() {
+        return custBirthdate;
     }
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
+
+    public void setCustBirthdate(Date custBirthdate) {
+        this.custBirthdate = custBirthdate;
     }
 
     @Override
     public String toString() {
-        return "Customer{" + "id=" + id + ", custName=" + custName + ", email=" + email + ", birthdate=" + birthdate + '}';
+        return "Customer{" + "id=" + id + ", custName=" + custName + ", email=" + custEmail + ", birthdate=" + custBirthdate + '}';
     }
 
-    
+    public String getCustPaymethod() {
+        return custPaymethod;
+    }
+
+    public void setCustPaymethod(String custPaymethod) {
+        this.custPaymethod = custPaymethod;
+    }
+
+    public String getCustGender() {
+        return custGender;
+    }
+
+    public void setCustGender(String custGender) {
+        this.custGender = custGender;
+    }
+
+    public Administrator getAdministrator() {
+        return administrator;
+    }
+
+    public void setAdministrator(Administrator administrator) {
+        this.administrator = administrator;
+    }
+
 }

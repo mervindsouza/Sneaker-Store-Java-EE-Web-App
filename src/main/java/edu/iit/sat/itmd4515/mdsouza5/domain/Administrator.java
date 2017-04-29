@@ -6,6 +6,8 @@
 package edu.iit.sat.itmd4515.mdsouza5.domain;
 
 import edu.iit.sat.itmd4515.mdsouza5.domain.security.User;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -38,11 +41,28 @@ public class Administrator {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String adminName;
-    private String email;
+    private String adminEmail;
 
     @OneToOne
     @JoinColumn(name = "USERNAME")
     private User user;
+
+    @OneToMany(mappedBy = "administrator")
+    private List<Seller> sellers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "administrator")
+    private List<Category> categories = new ArrayList<>();
+
+    @OneToMany(mappedBy = "administrator")
+    private List<Customer> customers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "administrator")
+    private List<Orders> orders = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "administrator")
+    private List<Product> products = new ArrayList<>();
+
+
 
     /**
      *
@@ -53,41 +73,25 @@ public class Administrator {
     /**
      *
      * @param adminName
-     * @param email
+     * @param adminEmail
      */
-    public Administrator(String adminName, String email) {
+    public Administrator(String adminName, String adminEmail) {
         this.adminName = adminName;
-        this.email = email;
+        this.adminEmail = adminEmail;
     }
 
-    /**
-     *
-     * @return
-     */
     public Long getId() {
         return id;
     }
 
-    /**
-     *
-     * @param id
-     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getAdminName() {
         return adminName;
     }
 
-    /**
-     *
-     * @param adminName
-     */
     public void setAdminName(String adminName) {
         this.adminName = adminName;
     }
@@ -96,16 +100,16 @@ public class Administrator {
      *
      * @return
      */
-    public String getEmail() {
-        return email;
+    public String getAdminEmail() {
+        return adminEmail;
     }
 
     /**
      *
-     * @param email
+     * @param adminEmail
      */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAdminEmail(String adminEmail) {
+        this.adminEmail = adminEmail;
     }
 
     /**
@@ -126,7 +130,44 @@ public class Administrator {
 
     @Override
     public String toString() {
-        return "Administrator{" + "id=" + id + ", adminName=" + adminName + ", email=" + email + ", user=" + user + '}';
+        return "Administrator{" + "id=" + id + ", adminName=" + adminName + ", email=" + adminEmail + ", user=" + user + '}';
     }
 
+    public List<Seller> getSellers() {
+        return sellers;
+    }
+
+    public void setSellers(List<Seller> sellers) {
+        this.sellers = sellers;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
+    }
+    public List<Product> getProducts() {
+        return products;
+    }
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 }

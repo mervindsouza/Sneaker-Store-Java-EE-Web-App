@@ -3,12 +3,6 @@
   <persistence-unit name="itmd4515PU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>jdbc/itmd4515DS</jta-data-source>
-    <class>edu.iit.sat.itmd4515.mdsouza5.domain.Category</class>
-    <class>edu.iit.sat.itmd4515.mdsouza5.domain.Customer</class>
-    <class>edu.iit.sat.itmd4515.mdsouza5.domain.Orders</class>
-    <class>edu.iit.sat.itmd4515.mdsouza5.domain.Product</class>
-    <class>edu.iit.sat.itmd4515.mdsouza5.domain.Administrator</class>
-    <class>edu.iit.sat.itmd4515.mdsouza5.domain.Seller</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>
